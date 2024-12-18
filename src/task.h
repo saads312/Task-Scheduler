@@ -32,10 +32,10 @@ typedef struct queue{
 } queue;
 
 // task queue functions
-queue * task_queue_init(int capacity, int (*comparator)(task * a, task * b));
-void task_queue_free(queue * q);
-void task_queue_add(queue * q, task * t);
-void task_queue_remove(queue * q, int id);
-void task_queue_list(queue * q);
-void compare_priority(task * a, task * b);
+queue * queue_init(int capacity, int (*comparator)(task * a, task * b));
+void queue_free(queue * q);
+void queue_add(queue * q, task * t);
+void queue_remove(queue * q, int id);
+void queue_list(queue * q);
+int compare_priority(task * a, task * b);
 
