@@ -19,6 +19,7 @@ typedef struct task {
     int id; // the id of the task
     int priority; // the priority of the task
     state state; // the state of the task
+    char * name; // the name of the task
     void (*function)(void * arg); // a function pointer to the task's function
     void * arg; // the argument to the task's function
 } task;

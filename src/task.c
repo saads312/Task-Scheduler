@@ -24,9 +24,10 @@ queue *queue_init(int capacity, int (*comparator)(task * a, task * b)) {
  * @param q the queue to free
  * @return void
  */
-void queue_free(queue * q) {
+void queue_free(queue *q) {
     for (int i = 0; i < q->size; i++) {
-        free(q->tasks[i]);
+        free(q->tasks[i]->name); // Free the task name
+        free(q->tasks[i]);       // Free the task
     }
     free(q->tasks);
     free(q);
@@ -85,8 +86,13 @@ void queue_remove(queue * q, int id) {
  * @return void
  */
 void queue_list(queue * q) {
+    if (q->size == 0) {
+        printf("No tasks in queue\n");
+        return;
+    }
+
     for (int i = 0; i < q->size; i++) {
-        printf("Task %d: priority %d\n", q->tasks[i]->id, q->tasks[i]->priority);
+        printf("Task %d: priority: %d\n", q->tasks[i]->id, q->tasks[i]->priority);
     }
 }
 
@@ -99,4 +105,3 @@ void queue_list(queue * q) {
 int compare_priority(task * new, task * comparison) {
     return comparison->priority - new->priority;
 }
-
